@@ -5,8 +5,33 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+      me: async(parent, args, context) =>{
+        if(context.user){
+        let userInfo= await User.findOne({_id: context.user._id});
+        return userInfo;
+        }
+        throw new AuthenticationError("User not Found!");
+      }
+        },
+    Mutation:{
+        login: async(parent, args, context) =>{
+            let userInfo = await User.findOne({email: args.email});
+            if(!userInfo){
+                throw new AuthenticationError("Error logging in!");
+            }
+            let correctPw=await userInfo.isCorrectPassword(args.password);
 
+            if (!correctPw) {
+                throw new AuthenticationError;
+              }
+              const token = signToken(user);
+              return { token, user };
+        },
+        addUser:
+        
     }
+
+    
 };
 
 
