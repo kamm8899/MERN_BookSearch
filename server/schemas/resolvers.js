@@ -27,6 +27,7 @@ const resolvers = {
               const token = signToken(user);
               return { token, user };
         },
+        //how do I query this in graphql
         addUser: async(parent, args, context) =>{
             const user = await User.create(args);
             if (!user) {
@@ -34,44 +35,30 @@ const resolvers = {
         }
             const token = signToken(user);
             return { token, user };
-        
-    }
+    },
+    savedBooks: async(parent, {input}, context) =>{
+        if(context.user){
+            const updateUser = await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $addToSet: { savedBooks: input } },
+                { new: true, runValidators: true }
+            );
+            return updatedUser;
+        }
+        throw new AuthenticationError("You are not logged in!")
+    },
+
+
 }
 
     
 };
 
 
-
 // const resolvers = {
 //     Query: {
-//       categories: async () => {
-//         return await Category.find();
-//       },
-//       products: async (parent, { category, name }) => {
-//         const params = {};
-  
-//         if (category) {
-//           params.category = category;
-//         }
-  
-//         if (name) {
-//           params.name = {
-//             $regex: name
-//           };
-//         }
-  
-//         return await Product.find(params).populate('category');
-//       },
 
-//       order: async (parent, { _id }, context) => {
 //     Mutation: {
-//       addUser: async (parent, args) => {
-//         const user = await User.create(args);
-//         const token = signToken(user);
-  
-//         return { token, user };
-//       },
 //       addOrder: async (parent, { products }, context) => {
 //         console.log(context);
 //         if (context.user) {
