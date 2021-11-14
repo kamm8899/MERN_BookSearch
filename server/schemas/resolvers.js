@@ -24,8 +24,8 @@ const resolvers = {
             if (!correctPw) {
                 throw new AuthenticationError;
               }
-              const token = signToken(user);
-              return { token, user };
+              const token = signToken(userInfo);
+              return { token, userInfo };
         },
         //how do I query this in graphql
         addUser: async(parent, args, context) =>{
@@ -36,18 +36,19 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
     },
-    saveBook: async(parent, {input}, context) =>{
+    saveBook: async(parent, args, context) =>{
         if(context.user){
+            console.log(args);
             const updateUser = await User.findOneAndUpdate(
                 {_id: context.user._id},
-                { $addToSet: { savedBooks: input } },
+                { $addToSet: { savedBooks: args.bookinfo } },
                 { new: true, runValidators: true }
             );
-            return updatedUser;
+            return updateUser;
         }
         throw new AuthenticationError("You are not logged in!")
     },
-    removeBook: async(parent, {bookId}, context) => {
+    removeBook: async(parent, args, context) => {
         if(context.user){
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
