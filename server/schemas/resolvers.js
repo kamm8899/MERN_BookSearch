@@ -36,7 +36,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
     },
-    savedBooks: async(parent, {input}, context) =>{
+    saveBook: async(parent, {input}, context) =>{
         if(context.user){
             const updateUser = await User.findOneAndUpdate(
                 {_id: context.user._id},
@@ -53,7 +53,7 @@ const resolvers = {
           { _id: context.user._id },
           { $pull: { savedBooks: { bookId: args.bookId } } },
           { new: true }
-        );
+        )
         if (!updatedUser) {
           throw new AuthenticationError("Couldn't find user with this id!");
         }
@@ -66,3 +66,7 @@ const resolvers = {
 };
   
   module.exports = resolvers;
+
+  //test the addUser
+  //saveBook
+  //removeBook
