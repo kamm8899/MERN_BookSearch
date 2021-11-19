@@ -25,8 +25,8 @@
   ## Deployed 
   This application is deployed via heroku: 
   ## Tests
-  test the project by running npm run develop [Heroku](https://cryptic-journey-02373.herokuapp.com/)
-)
+  test the project by running npm run develop. Please also create your own user and at that point you will be able to search, save and delete your favorite books.  [Heroku](https://cryptic-journey-02373.herokuapp.com/)
+
   ## Questions
   For any questions, please reach out to me at:<br/>
   Github: [kamm8899](https://github.com/kamm8899/README-Generator) <br/>
