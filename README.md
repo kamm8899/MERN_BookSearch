@@ -25,7 +25,7 @@
   ## Deployed 
   This application is deployed via heroku: 
   ## Tests
-  test the project by running npm run develop [Heroku](https://cryptic-journey-02373.herokuapp.com/git)
+  test the project by running npm run develop [Heroku](https://cryptic-journey-02373.herokuapp.com)
 )
   ## Questions
   For any questions, please reach out to me at:<br/>
