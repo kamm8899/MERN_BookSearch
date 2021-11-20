@@ -23,8 +23,7 @@
    ## Contribution
   You can contribute to my project by reaching out via github kamm8899. This project did not have any contributions
   ## Deployed 
-  This application is deployed via heroku: [Heroku]
-  (https://cryptic-journey-02373.herokuapp.com/)
+  This application is deployed via [Heroku](https://cryptic-journey-02373.herokuapp.com/)
 
   ## Tests
   test the project by running npm run develop. Please also create your own user and at that point you will be able to search, save and delete your favorite books.  [Heroku](https://cryptic-journey-02373.herokuapp.com/)
